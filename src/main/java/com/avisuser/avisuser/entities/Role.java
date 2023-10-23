@@ -1,7 +1,10 @@
 package com.avisuser.avisuser.entities;
 
-import jakarta.persistence.Column;
+import com.avisuser.avisuser.enumaration.TypeDeRole;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,16 +14,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
-@Table(name = "client")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Client {
-
+@Entity
+@Table(name = "role")
+public class Role {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(unique = true)
-	private String email;
-	private String telephone;
+	@Enumerated(EnumType.STRING)//stocker en chaine de caractère
+	private TypeDeRole libelle;
 }

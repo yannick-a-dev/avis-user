@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.avisuser.avisuser.entities.Client;
 import com.avisuser.avisuser.repository.ClientRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class ClientService {
 
@@ -29,10 +31,8 @@ public class ClientService {
 
 	public Client lire(int id) {
 		Optional<Client> client = this.clientRepository.findById(id);
-		if(client.isPresent()) {
-			return client.get();
-		}
-		return null;
+	     return client.orElseThrow(
+	    		 () -> new EntityNotFoundException("Aucun client n'existe avec cet id"));
 	}
 
 	public Client lireOuCreer(Client clientAcreer) {

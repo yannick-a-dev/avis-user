@@ -1,15 +1,20 @@
 version: '3.1'
-
 services:
   db:
-    image: mariadb:10.6
+    container_name: mariadb-11.0.3-jammy
+    image: mariadb:11.0.3-jammy
     restart: always
     environment:
-      MARIADB_ROOT_PASSWORD: root
-    ports:
-      - 3307:3306
+      MARIADB_ROOT_PASSWORD: example
   adminer:
-    image: adminer
+    container_name: adminer-4.8.1-standalone
+    image: adminer:4.8.1-standalone
+    restart: always
+  smtp4dev:
+    image: rnwood/smtp4dev:v3
     restart: always
     ports:
-      - 8081:8080
+      # Change the number before : to the port the SMTP server should be accessible on
+      - 9025:25
+   
+  

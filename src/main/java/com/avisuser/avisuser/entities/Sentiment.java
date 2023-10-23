@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "SENTIMENT")
+@Table(name = "sentiment")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Sentiment {
