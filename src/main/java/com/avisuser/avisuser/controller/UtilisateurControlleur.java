@@ -10,6 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avisuser.avisuser.dto.AuthentificationDTO;
@@ -40,6 +41,11 @@ public class UtilisateurControlleur {
 	public void activation(@RequestBody Map<String, String> activation) {
 		log.info("Inscription");
 		this.utilisateurService.activation(activation);
+	}
+	
+	@PostMapping(path = "refresh-token")
+	public @ResponseBody Map<String, String> refreshToken(@RequestBody Map<String, String> refreshTokenRequest) {
+		return this.jwtService.refreshToken(refreshTokenRequest);
 	}
 	
 	@PostMapping(path = "connexion")
