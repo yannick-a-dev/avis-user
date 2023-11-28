@@ -1,9 +1,10 @@
 package com.avisuser.avisuser.service;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -62,5 +63,14 @@ public class UtilisateurService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {  //chercher un utilisateur depuis la BDD
 		return this.utilisateurRepository.findByEmail(username)
 				.orElseThrow(()-> new UsernameNotFoundException("Aucun n'utilisateur ne correspond à cette identifiant"));
+	}
+
+	public List<Utilisateur> liste() {
+	   final Iterable<Utilisateur> utilisateurIterable = this.utilisateurRepository.findAll();
+	   List<Utilisateur> utilisateurs = new ArrayList<>();
+	   for(Utilisateur utilisateur : utilisateurIterable) {
+		   utilisateurs.add(utilisateur);
+	   }
+	   return utilisateurs;
 	}
 }
